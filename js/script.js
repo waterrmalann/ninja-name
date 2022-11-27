@@ -83,6 +83,22 @@ function getNinjaName(realName) {
 	return _ninjaNameConstructor.join("-");
 }
 
+function getRealName(ninjaName, mappings = mappings1) {
+	// Experimental function to convert a ninja name back to real name.
+	// Supports both generators.
+
+	let _ninjaNameParts = ninjaName.toLowerCase().split(/[\s-]+/);
+	let _realName = [];
+	for (const _part of _ninjaNameParts) {
+		for (const _c in mappings) {
+			if (mappings[_c].toLowerCase() == _part) {
+				_realName.push(_c);
+			}
+		}
+	}
+	return _realName.join('');
+}
+
 function convertName() {
 	e_result.innerText = getNinjaName(e_name.value);
 }
